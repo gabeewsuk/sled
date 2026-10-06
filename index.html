@@ -97,6 +97,10 @@ section { display: grid; gap: 18px; }
 .reels figcaption { display: flex; justify-content: space-between; gap: 8px; font: 500 12.5px/1.35 var(--mono); color: var(--muted); }
 .reels figcaption b { color: var(--red); font-weight: 600; white-space: nowrap; }
 
+/* pitch-me-a-product callout */
+.idea { background: var(--red-soft); border-left: 4px solid var(--red); border-radius: 4px; padding: 24px; display: grid; gap: 12px; }
+.idea p { max-width: 58ch; font-size: 17px; }
+
 /* what you get */
 .get { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
 .get li { padding: 12px 0; border-bottom: 1px solid var(--rule); font-weight: 600; }
@@ -191,12 +195,18 @@ section { display: grid; gap: 18px; }
       </div>
     </section>
 
+    <section class="idea" aria-labelledby="i-h">
+      <h2 id="i-h">Want one of these for your brand?</h2>
+      <p>Tell me what you sell and I'll come back with a few funny video ideas built around it. They run on @406sleds, and you get the cut to post and run as ads on your own channels. The reels above are the track record.</p>
+      <div class="ctas"><a class="btn primary" id="mail3" href="mailto:gabeewsuk@gmail.com?subject=Video%20ideas">Pitch me your product →</a></div>
+    </section>
+
     <section aria-labelledby="g-h">
       <h2 id="g-h">What you get</h2>
       <ul class="get">
         <li>2 tagged reels a month, December to April<span>On @406sleds, with your product in the shot.</span></li>
         <li>Your product in the riding and the comedy<span>On the sled and on me, in the clips that get shared the most.</span></li>
-        <li>Raw footage you can use<span>Repost it or run it in your own ads.</span></li>
+        <li>UGC built around your product<span>Funny, share-ready videos you can post and run as ads, plus the raw footage.</span></li>
         <li>Sled Fest big-air jumps<span>2025 and 2026, and again this season in your gear.</span></li>
       </ul>
       <p class="facts"><b>Audience:</b> 92% men · 81% aged 18–44 · 77% US &amp; Canada, 8.5% Sweden &amp; Norway<br><b>Sled:</b> Polaris RMK · <b>Riding:</b> Beartooths, Cooke City</p>
@@ -285,6 +295,7 @@ function personalize() {
   document.title = "Gabe Ewsuk Sled Media Kit" + (name ? " · " + name : "");
   const href = "mailto:gabeewsuk@gmail.com?subject=" + encodeURIComponent((name ? name + " x " : "") + "Gabe Ewsuk / @406sleds, 2026-27");
   document.getElementById("mail").href = document.getElementById("mail2").href = href;
+  document.getElementById("mail3").href = "mailto:gabeewsuk@gmail.com?subject=" + encodeURIComponent("Video ideas for " + (name || "my brand") + " / @406sleds");
 }
 personalize();
 addEventListener("hashchange", personalize);

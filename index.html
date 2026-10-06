@@ -154,12 +154,12 @@ p { margin: 0; }
         <div class="pbar">
           <button type="button" id="pp" aria-label="Play">▶</button>
           <input type="range" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
-          <span id="tm">0:00 / 1:06</span>
+          <span id="tm">0:00 / 1:02</span>
           <button type="button" id="mute" aria-label="Unmute">🔇</button>
           <button type="button" id="fs" aria-label="Full screen">⛶</button>
         </div>
       </div>
-      <figcaption>2025–26 highlight reel · 1:06 · 1080p · turn sound on</figcaption>
+      <figcaption>2025–26 highlight reel · 1:02 · 1080p · turn sound on</figcaption>
     </figure>
   </aside>
 
@@ -282,7 +282,7 @@ p { margin: 0; }
   let dragging = false;
   const fmt = t => Math.floor(t / 60) + ":" + String(Math.floor(t % 60)).padStart(2, "0");
   function ui() {
-    const d = v.duration || 66.2, t = v.currentTime || 0;
+    const d = v.duration || 62.0, t = v.currentTime || 0;
     if (!dragging) seek.value = Math.round(t / d * 1000);
     tm.textContent = fmt(t) + " / " + fmt(d);
     const playing = !v.paused;

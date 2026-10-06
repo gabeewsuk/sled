@@ -3,82 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Gabe Ewsuk Sled Media Kit</title>
+<title>Gabe Ewsuk, @406sleds</title>
 <meta name="description" content="Sled content built around comedy, from Bozeman, MT. 3.6M views in 90 days on @406sleds.">
-<meta property="og:title" content="Gabe Ewsuk · @406sleds">
+<meta property="og:title" content="Gabe Ewsuk, @406sleds">
 <meta property="og:description" content="Sled content built around comedy. 3.6M views in 90 days, 98% from non-followers. Looking for a product deal or ambassador spot for 2026–27.">
 <meta property="og:image" content="https://gabeewsuk.github.io/sled/img/poster.jpg">
 <meta property="og:url" content="https://gabeewsuk.github.io/sled/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 :root {
-  --snow: #f3f6f8;
-  --panel: #ffffff;
-  --ink: #131c24;
-  --muted: #5b6874;
-  --rule: #d6dde3;
+  --bg: #f6f7f8;
+  --card: #ffffff;
+  --ink: #15191d;
+  --muted: #5d6670;
+  --line: #dde1e5;
   --red: #c8202b;
-  --red-soft: #fbe9ea;
-  --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
-  --body: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --snow:#0e141a; --panel:#151d25; --ink:#e7edf2; --muted:#93a1ad; --rule:#26313b; --red:#ff4a52; --red-soft:#2a1416; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --bg:#0f1316; --card:#171c20; --ink:#eef1f3; --muted:#9aa4ad; --line:#2a3137; --red:#ff4d55; color-scheme: dark; }
 }
-:root[data-theme="dark"] { --snow:#0e141a; --panel:#151d25; --ink:#e7edf2; --muted:#93a1ad; --rule:#26313b; --red:#ff4a52; --red-soft:#2a1416; color-scheme: dark; }
+:root[data-theme="dark"] { --bg:#0f1316; --card:#171c20; --ink:#eef1f3; --muted:#9aa4ad; --line:#2a3137; --red:#ff4d55; color-scheme: dark; }
 
 * { box-sizing: border-box; }
-body { background: var(--snow); color: var(--ink); font: 16px/1.55 var(--body); margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 17px/1.55 var(--font); margin: 0; }
 a { color: var(--red); }
 p { margin: 0; }
-h1, h2 { font-family: var(--display); font-weight: 900; letter-spacing: .01em; text-transform: uppercase; text-wrap: balance; margin: 0; line-height: .95; }
-h1 { font-size: clamp(52px, 8vw, 96px); }
-h2 { font-size: clamp(30px, 4.2vw, 42px); }
+h1 { font-size: clamp(40px, 5.5vw, 60px); line-height: 1.05; letter-spacing: -.02em; margin: 0; }
+h2 { font-size: clamp(24px, 3vw, 30px); line-height: 1.15; letter-spacing: -.01em; margin: 0; }
 
-/* desktop: reel pinned left across the whole page; hero and the rest on the right */
-.layout { --vh: calc(100dvh - 48px); display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "reel hero" "reel rest"; column-gap: 48px; row-gap: 56px; max-width: 1400px; margin: 0 auto; padding: 24px 28px 64px; }
+/* desktop: video pinned on the left, everything else on the right */
+.layout { --vh: calc(100dvh - 48px); display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "reel hero" "reel rest"; column-gap: 48px; row-gap: 56px; max-width: 1320px; margin: 0 auto; padding: 24px 28px 64px; }
 .side { grid-area: reel; position: sticky; top: 24px; align-self: start; }
-.hero { grid-area: hero; display: grid; gap: 20px; align-content: start; padding-top: 8px; min-width: 0; }
-.rest { grid-area: rest; display: grid; gap: 56px; min-width: 0; }
+.hero { grid-area: hero; display: grid; gap: 16px; align-content: start; padding-top: 12px; min-width: 0; max-width: 680px; }
+.rest { grid-area: rest; display: grid; gap: 56px; min-width: 0; max-width: 760px; }
+.side .player { height: var(--vh); width: min(calc(var(--vh) * 9 / 16), 40vw); }
 
-.reel { margin: 0; }
-.reel figcaption { margin-top: 8px; font: 500 12px/1.4 var(--mono); color: var(--muted); letter-spacing: .04em; }
-.side .player { height: calc(var(--vh) - 26px); width: min(calc((var(--vh) - 26px) * 9 / 16), 40vw); }
-
-.for { display: inline-flex; gap: 8px; font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--red); background: var(--red-soft); padding: 8px 12px; border-radius: 3px; justify-self: start; }
-.handle { font: 600 18px var(--body); color: var(--muted); margin-top: -8px; }
-.handle a { color: var(--ink); text-decoration: none; }
-.handle a:hover { text-decoration: underline; }
-.pos { font-size: 19px; line-height: 1.5; max-width: 54ch; }
-.ask { font-size: 21px; font-weight: 600; line-height: 1.35; max-width: 40ch; }
-.ctas { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.btn { display: inline-flex; align-items: center; gap: 8px; font: 600 16px var(--body); text-decoration: none; padding: 12px 18px; border-radius: 4px; border: 2px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; }
+.hey { font-size: 19px; color: var(--muted); }
+.handle { color: var(--muted); margin-top: -8px; }
+.handle a { color: inherit; }
+.ask { font-weight: 650; font-size: 19px; }
+.ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-block; font: 600 16px var(--font); text-decoration: none; padding: 11px 18px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink); background: var(--card); cursor: pointer; }
 .btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
-.btn:hover { filter: brightness(1.08); }
+.btn:hover { filter: brightness(1.06); }
 .btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--ink); }
-.stat { padding: 14px 14px 12px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
-.stat b { display: block; font: 900 clamp(36px, 4.6vw, 54px)/1 var(--display); font-variant-numeric: tabular-nums; }
-.stat.hot b { color: var(--red); }
-.stat span { display: block; margin-top: 6px; color: var(--muted); font-size: 14px; }
-.note { font-size: 14.5px; color: var(--muted); max-width: 64ch; }
+.stats { display: flex; flex-wrap: wrap; gap: 14px 36px; margin-top: 8px; }
+.stat b { display: block; font-size: 32px; line-height: 1.1; letter-spacing: -.02em; }
+.stat span { color: var(--muted); font-size: 14.5px; }
 
 /* player */
-.player { position: relative; aspect-ratio: 9 / 16; background: #000; border-radius: 6px; overflow: hidden; }
+.player { position: relative; aspect-ratio: 9 / 16; background: #000; border-radius: 12px; overflow: hidden; }
 .player video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
 .player:fullscreen { border-radius: 0; aspect-ratio: auto; }
-.bigplay { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; border-radius: 50%; border: 0; background: rgba(0,0,0,.55); color: #fff; display: grid; place-items: center; cursor: pointer; }
-.bigplay:hover { background: var(--red); }
+.bigplay { position: absolute; inset: 0; margin: auto; width: 72px; height: 72px; border-radius: 50%; border: 0; background: rgba(0,0,0,.55); color: #fff; display: grid; place-items: center; cursor: pointer; }
 .player.playing .bigplay { display: none; }
-.unmute { position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; background: rgba(0,0,0,.6); color: #fff; font: 600 13px var(--body); padding: 8px 14px; cursor: pointer; }
-.unmute:hover { background: var(--red); }
-.pbar { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 8px; padding: 22px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,.7)); color: #fff; font: 500 12px var(--mono); transition: opacity .2s; }
+.unmute { position: absolute; top: 12px; left: 12px; border: 0; border-radius: 999px; background: rgba(0,0,0,.6); color: #fff; font: 600 14px var(--font); padding: 8px 14px; cursor: pointer; }
+.pbar { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 8px; padding: 22px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,.7)); color: #fff; font-size: 12px; transition: opacity .2s; }
 .player.playing:not(:hover):not(:focus-within) .pbar { opacity: 0; }
 .pbar button { background: none; border: 0; color: #fff; font-size: 15px; cursor: pointer; padding: 4px; min-width: 26px; }
 .pbar input[type=range] { flex: 1; min-width: 0; accent-color: var(--red); }
@@ -86,151 +69,120 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); }
 .pbar button:focus-visible, .bigplay:focus-visible, .unmute:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .pbar { transition: none; } }
 
-section { display: grid; gap: 18px; }
-.lead { color: var(--muted); max-width: 60ch; }
+section { display: grid; gap: 16px; }
+.muted { color: var(--muted); }
 
-/* reels */
 .reels { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 326px), 1fr)); gap: 20px; align-items: start; }
-.reels figure { margin: 0; min-width: 0; display: grid; gap: 8px; }
-.reels .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: 540px !important; border-radius: 6px !important; }
-.reels .ig-fallback { display: grid; place-items: center; aspect-ratio: 9 / 16; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; font: 500 13px var(--mono); }
+.reels figure { margin: 0; min-width: 0; }
+.reels .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: 540px !important; border-radius: 10px !important; }
+.reels .ig-fallback { display: grid; place-items: center; aspect-ratio: 9 / 16; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
 #morereels { justify-self: start; }
-.reels figcaption { display: flex; justify-content: space-between; gap: 8px; font: 500 12.5px/1.35 var(--mono); color: var(--muted); }
-.reels figcaption b { color: var(--red); font-weight: 600; white-space: nowrap; }
 
-/* pitch-me-a-product callout */
-.idea { background: var(--red-soft); border-left: 4px solid var(--red); border-radius: 4px; padding: 24px; display: grid; gap: 12px; }
-.idea p { max-width: 58ch; font-size: 17px; }
+ul.plain { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
 
-/* what you get */
-.get { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
-.get li { padding: 12px 0; border-bottom: 1px solid var(--rule); font-weight: 600; }
-.get li span { display: block; font-weight: 400; color: var(--muted); font-size: 14.5px; }
-.facts { font: 500 13px/1.6 var(--mono); color: var(--muted); }
-.facts b { color: var(--ink); font-weight: 500; }
+.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 600px; }
+.shots a { display: block; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.shots img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; object-position: top; display: block; }
 
-/* proof */
-.proof { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 720px; }
-.proof a { display: block; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; background: var(--panel); text-decoration: none; color: var(--muted); }
-.proof img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; object-position: top; display: block; }
-.proof span { display: block; padding: 6px 8px; font: 500 11.5px/1.35 var(--mono); }
-.proof a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.email { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.email code { font: 600 17px var(--font); background: var(--card); border: 1px solid var(--line); padding: 10px 14px; border-radius: 8px; user-select: all; overflow-wrap: anywhere; }
 
-/* contact */
-.contact { background: var(--ink); color: var(--snow); border-radius: 6px; padding: 32px; }
-.contact h2 { color: var(--snow); }
-.contact .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
-.contact code { font: 500 16px var(--mono); background: color-mix(in srgb, var(--snow) 10%, transparent); padding: 10px 12px; border-radius: 3px; user-select: all; overflow-wrap: anywhere; }
-.contact a { color: var(--snow); }
-.contact .btn { border-color: color-mix(in srgb, var(--snow) 40%, transparent); color: var(--snow); }
-.contact .btn.primary { border-color: var(--red); }
-
-/* phone: name and ask first, then the reel, then the rest */
-/* phone: short name header, video right away, stats under it, then the ask */
+/* phone: name, then the video right away, numbers under it, then the pitch */
 @media (max-width: 860px) {
-  .layout { display: flex; flex-direction: column; gap: 12px; padding: 14px 16px 48px; }
+  .layout { display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 48px; }
   .hero { display: contents; }
   .hero > *, .side, .rest { order: 20; }
-  .for { order: 1; align-self: flex-start; } .ctas { align-self: stretch; } .hero h1 { order: 2; } .handle { order: 3; }
-  .side { order: 5; position: static; margin-top: 4px; align-self: stretch; }
-  .stats { order: 6; } .note { order: 7; } .pos { order: 8; margin-top: 14px; font-size: 17px; } .ask { order: 9; } .ctas { order: 10; }
+  .hey { order: 1; } .hero h1 { order: 2; } .handle { order: 3; }
+  .side { order: 5; position: static; align-self: stretch; margin-top: 4px; }
+  .stats { order: 6; gap: 12px 28px; } .intro { order: 8; margin-top: 12px; } .ask { order: 9; } .ctas { order: 10; }
   .rest { order: 11; margin-top: 40px; }
-  .hero h1 { font-size: 46px; }
-  .handle { margin-top: 0; font-size: 16px; }
-  .reel { width: min(100%, calc(68vh * 9 / 16), calc(68svh * 9 / 16)); margin-inline: auto; }
-  .side .player { height: auto; width: 100%; }
-  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .stat b { font-size: 34px; }
-  .contact { padding: 24px 18px; }
+  .hero h1 { font-size: 40px; }
+  .side .player { height: auto; width: min(100%, calc(68vh * 9 / 16), calc(68svh * 9 / 16)); margin-inline: auto; }
+  .stat b { font-size: 28px; }
 }
-@media (max-width: 480px) { .proof { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>
 </head>
 <body>
 <div class="layout">
   <header class="hero">
-    <span class="for" id="for" hidden>Prepared for <span id="brand"></span></span>
+    <p class="hey" id="for" hidden>Hey <span id="brand"></span>,</p>
     <h1>Gabe Ewsuk</h1>
-    <p class="handle"><a href="https://www.instagram.com/406sleds" target="_blank" rel="noopener">@406sleds</a> · Bozeman, Montana</p>
-    <p class="pos">I build my sled content around comedy because funny clips get sent around. That's how @406sleds reached 1.88 million accounts in 90 days with under 2,000 followers, and the people it reaches are the ones who buy sled gear: 92% men, mostly 18–44, in the US and Canada.</p>
-    <p class="ask">I'm looking for a product deal or ambassador spot for the 2026–27 season.</p>
+    <p class="handle"><a href="https://www.instagram.com/406sleds" target="_blank" rel="noopener">@406sleds</a>, Bozeman, Montana</p>
+    <p class="intro">I ride out of Bozeman and make sled videos that are mostly about being funny, because funny is what people send to their buddies. In the last 90 days @406sleds got 3.6 million views with under 2,000 followers. 98% of those views came from people who don't follow me, and they're mostly guys 18 to 44 in the US and Canada.</p>
+    <p class="ask">I'm looking for a product deal or an ambassador spot for this season.</p>
     <div class="ctas">
-      <a class="btn primary" id="mail" href="mailto:gabeewsuk@gmail.com?subject=Sponsorship%202026-27">Email me →</a>
-      <a class="btn" href="https://www.instagram.com/406sleds" target="_blank" rel="noopener">DM @406sleds</a>
+      <a class="btn primary" id="mail" href="mailto:gabeewsuk@gmail.com">Email me</a>
+      <a class="btn" href="https://www.instagram.com/406sleds" target="_blank" rel="noopener">DM me on Instagram</a>
     </div>
     <div class="stats">
-      <div class="stat hot"><b>3.6M</b><span>views in 90 days</span></div>
+      <div class="stat"><b>3.6M</b><span>views, last 90 days</span></div>
       <div class="stat"><b>1.88M</b><span>accounts reached</span></div>
-      <div class="stat"><b>168K</b><span>likes, shares, saves &amp; comments</span></div>
+      <div class="stat"><b>168K</b><span>likes, comments, shares</span></div>
       <div class="stat"><b>1,861</b><span>followers</span></div>
     </div>
-    <p class="note">98% of views came from people who don't follow the page.</p>
   </header>
 
   <aside class="side" aria-label="Highlight reel">
-    <figure class="reel">
-      <div class="player" id="player">
-        <video id="va" src="reel.mp4" playsinline muted autoplay loop preload="auto" poster="img/poster.jpg"></video>
-        <button type="button" class="unmute" id="unmute">🔇 Tap for sound</button>
-        <button type="button" class="bigplay" id="bigplay" aria-label="Play reel"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
-        <div class="pbar">
-          <button type="button" id="pp" aria-label="Play">▶</button>
-          <input type="range" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
-          <span id="tm">0:00 / 1:02</span>
-          <button type="button" id="mute" aria-label="Unmute">🔇</button>
-          <button type="button" id="fs" aria-label="Full screen">⛶</button>
-        </div>
+    <div class="player" id="player">
+      <video id="va" src="reel.mp4" playsinline muted autoplay loop preload="auto" poster="img/poster.jpg"></video>
+      <button type="button" class="unmute" id="unmute">Tap for sound</button>
+      <button type="button" class="bigplay" id="bigplay" aria-label="Play reel"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+      <div class="pbar">
+        <button type="button" id="pp" aria-label="Play">▶</button>
+        <input type="range" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+        <span id="tm">0:00 / 1:02</span>
+        <button type="button" id="mute" aria-label="Unmute">🔇</button>
+        <button type="button" id="fs" aria-label="Full screen">⛶</button>
       </div>
-      <figcaption>2025–26 season · 1:02 · sound on</figcaption>
-    </figure>
+    </div>
   </aside>
 
   <main class="rest">
     <section aria-labelledby="r-h">
-      <h2 id="r-h">What gets shared</h2>
+      <h2 id="r-h">Some of the ones that took off</h2>
       <div class="reels">
-        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DVg4VVxj01T/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DVg4VVxj01T/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>Sled on the Subaru</span><b>50.8K likes</b></figcaption></figure>
-        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUYqGmpkRaB/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/p/DUYqGmpkRaB/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>“Listening to Swifty”</span><b>Comedy</b></figcaption></figure>
-        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYSaX8msgqc/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DYSaX8msgqc/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>Sled Fest 2026</span><b>Big air</b></figcaption></figure>
-        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUTePaqkRQW/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/p/DUTePaqkRQW/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>“Burrowing season”</span><b>Comedy</b></figcaption></figure>
-        <figure class="more" hidden><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUWEDycEf4V/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/p/DUWEDycEf4V/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>“House payment isn't due”</span><b>Comedy</b></figcaption></figure>
-        <figure class="more" hidden><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUbP9hmka22/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DUbP9hmka22/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>“At least he said sorry”</span><b>Comedy</b></figcaption></figure>
-        <figure class="more" hidden><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYc91-TNePY/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DYc91-TNePY/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>Sled Fest · Ice Age jump</span><b>Big air</b></figcaption></figure>
-        <figure class="more" hidden><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DVPqP0mEcMX/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/p/DVPqP0mEcMX/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>Montana riding spots</span><b>Local</b></figcaption></figure>
+        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DVg4VVxj01T/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DVg4VVxj01T/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote></figure>
+        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUYqGmpkRaB/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/p/DUYqGmpkRaB/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote></figure>
+        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYSaX8msgqc/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DYSaX8msgqc/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote></figure>
+        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUTePaqkRQW/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/p/DUTePaqkRQW/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote></figure>
+        <figure class="more" hidden><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUWEDycEf4V/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/p/DUWEDycEf4V/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote></figure>
+        <figure class="more" hidden><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUbP9hmka22/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DUbP9hmka22/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote></figure>
+        <figure class="more" hidden><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYc91-TNePY/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DYc91-TNePY/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote></figure>
+        <figure class="more" hidden><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DVPqP0mEcMX/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/p/DVPqP0mEcMX/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote></figure>
       </div>
-      <button type="button" class="btn" id="morereels">More reels (4)</button>
+      <button type="button" class="btn" id="morereels">Show 4 more</button>
     </section>
 
-    <section class="idea" aria-labelledby="i-h">
-      <h2 id="i-h">Want one of these for your brand?</h2>
-      <p>Tell me what you sell and I'll come back with a few funny video ideas built around it. They run on @406sleds, and you get the cut to post and run as ads on your own channels. The reels above are the track record.</p>
-      <div class="ctas"><a class="btn primary" id="mail3" href="mailto:gabeewsuk@gmail.com?subject=Video%20ideas">Pitch me your product →</a></div>
+    <section aria-labelledby="i-h">
+      <h2 id="i-h">Got a product?</h2>
+      <p>Tell me what you sell and I'll come up with a few funny video ideas around it. I post them on @406sleds, and you get the videos to post yourself or run as ads. Those are all from my page, so I know what gets shared.</p>
+      <div class="ctas"><a class="btn primary" id="mail3" href="mailto:gabeewsuk@gmail.com">Send me your product</a></div>
     </section>
 
     <section aria-labelledby="g-h">
-      <h2 id="g-h">What you get</h2>
-      <ul class="get">
-        <li>2 tagged reels a month, December to April<span>On @406sleds, with your product in the shot.</span></li>
-        <li>Your product in the riding and the comedy<span>On the sled and on me, in the clips that get shared the most.</span></li>
-        <li>UGC built around your product<span>Funny, share-ready videos you can post and run as ads, plus the raw footage.</span></li>
-        <li>Sled Fest big-air jumps<span>2025 and 2026, and again this season in your gear.</span></li>
+      <h2 id="g-h">What I'd do for you</h2>
+      <ul class="plain">
+        <li>2 videos a month with your product in them, December through April</li>
+        <li>Your stuff on the sled and on me in everything I post</li>
+        <li>The videos and raw clips, yours to use however you want, ads included</li>
+        <li>Sled Fest again this spring, in your gear</li>
       </ul>
-      <p class="facts"><b>Audience:</b> 92% men · 81% aged 18–44 · 77% US &amp; Canada, 8.5% Sweden &amp; Norway<br><b>Sled:</b> Polaris RMK · <b>Riding:</b> Beartooths, Cooke City</p>
+      <p class="muted">I ride a Polaris RMK, mostly in the Beartooths and around Cooke City. The audience is 92% guys, about 80% between 18 and 44, mostly US and Canada, with a surprising amount of Sweden and Norway.</p>
     </section>
 
     <section aria-labelledby="p-h">
-      <h2 id="p-h">Proof</h2>
-      <div class="proof">
-        <a href="img/10_IMG_0560.jpg" target="_blank" rel="noopener"><img src="img/10_IMG_0560.jpg" alt="Instagram Insights: 3,601,692 views in 90 days, 98% non-followers" loading="lazy"><span>3.6M views · 90 days</span></a>
-        <a href="img/11_IMG_0561.jpg" target="_blank" rel="noopener"><img src="img/11_IMG_0561.jpg" alt="Instagram Insights: followers up 206.9 percent" loading="lazy"><span>Followers</span></a>
-        <a href="img/05_IMG_6072.jpg" target="_blank" rel="noopener"><img src="img/05_IMG_6072.jpg" alt="Instagram Insights: audience age ranges" loading="lazy"><span>Audience ages</span></a>
+      <h2 id="p-h">Screenshots from Instagram</h2>
+      <div class="shots">
+        <a href="img/10_IMG_0560.jpg" target="_blank" rel="noopener"><img src="img/10_IMG_0560.jpg" alt="Instagram Insights: 3,601,692 views in 90 days, 98% non-followers" loading="lazy"></a>
+        <a href="img/11_IMG_0561.jpg" target="_blank" rel="noopener"><img src="img/11_IMG_0561.jpg" alt="Instagram Insights: followers" loading="lazy"></a>
+        <a href="img/05_IMG_6072.jpg" target="_blank" rel="noopener"><img src="img/05_IMG_6072.jpg" alt="Instagram Insights: audience ages" loading="lazy"></a>
       </div>
     </section>
 
-    <section class="contact" aria-labelledby="c-h">
-      <h2 id="c-h">Want in for 2026–27?</h2>
-      <div class="row"><code id="email">gabeewsuk@gmail.com</code><button type="button" class="btn" id="copy">Copy email</button><a class="btn primary" id="mail2" href="mailto:gabeewsuk@gmail.com?subject=Sponsorship%202026-27">Email me →</a></div>
-      <p>Or DM <a href="https://www.instagram.com/406sleds" target="_blank" rel="noopener">@406sleds</a> on Instagram.</p>
+    <section aria-labelledby="c-h">
+      <h2 id="c-h">Let's talk</h2>
+      <div class="email"><code id="email">gabeewsuk@gmail.com</code><button type="button" class="btn" id="copy">Copy</button><a class="btn primary" id="mail2" href="mailto:gabeewsuk@gmail.com">Email me</a></div>
+      <p>Or DM me at <a href="https://www.instagram.com/406sleds" target="_blank" rel="noopener">@406sleds</a>.</p>
     </section>
   </main>
 </div>
@@ -296,7 +248,7 @@ document.getElementById("morereels").addEventListener("click", e => {
   if (window.instgrm) window.instgrm.Embeds.process();
 });
 
-// Personalize from the link's #brand token, e.g. …#klim → "Prepared for KLIM" and an email subject naming the brand
+// Personalize from the link's #brand token, e.g. #klim shows "Hey KLIM," and puts the brand in the email subject
 const BRANDS = {"iceage": "IceAge Performance", "scs": "SCS Unlimited", "basecamp": "Basecamp Powersports Gallatin", "eos": "EOS Energy", "polariswest": "Polaris West Yellowstone", "redline": "Redline Sports", "himark": "Hi-Mark Rentals", "rox": "ROX Speed FX", "motorex": "MOTOREX USA", "insta360": "Insta360", "deviantink": "Deviant Ink", "arcticfx": "Arctic FX", "fxr": "FXR", "klim": "KLIM", "castlex": "Castle X", "straightline": "Straightline Performance", "sledusa": "Sled USA", "caproskis": "C&A Pro Skis", "boondocker": "BoonDocker", "cardo": "Cardo Systems", "fox": "Fox", "engineice": "Engine Ice", "gopro": "GoPro", "maxima": "Maxima", "onx": "onX Offroad", "garmin": "Garmin", "celsius": "Celsius", "buckedup": "Bucked Up", "biteharder": "BITEHARDER", "leatt": "Leatt", "zrp": "Zollinger Racing Products", "backwoods": "Backwoods BMP", "diamonds": "Diamond S Mfg", "xero": "Xero Composites", "carbonsled": "CarbonSled", "carls": "Carl's Cycle Sales", "m7": "M7 Designs", "slp": "SLP", "mountainaddiction": "Mountain Addiction", "alpinestars": "Alpinestars", "actionmotor": "Action Motor Sports", "rexburgms": "Rexburg Motor Sports", "skinz": "Skinz Protective Gear", "amr": "AMR Racing", "dji": "DJI", "hundred": "100%", "caliber": "Caliber Products", "speedwerx": "Speedwerx", "cheetah": "Cheetah Factory Racing", "509": "509", "fly": "FLY Racing", "bca": "Backcountry Access", "highmark": "Highmark Airbags", "tobe": "TOBE Outerwear", "rugged": "Rugged Radios", "polaris": "Polaris", "amsoil": "AMSOIL", "klotz": "Klotz", "monster": "Monster Energy", "redbull": "Red Bull", "scott": "Scott", "mammut": "Mammut", "lmnt": "LMNT", "duradeck": "Dura Deck", "camso": "Camso", "tracksusa": "Tracks USA", "truckboss": "TruckBoss Decks", "toyup": "Toy Up Industries", "triton": "Triton Trailers", "decked": "DECKED", "floe": "Floe International", "bmfab": "B&M Fabrications", "pind": "Pin'd Performance", "tki": "TKI CNC", "stm": "STM Powersports", "dalton": "Dalton Industries", "ibexx": "Ibexx", "zbroz": "Zbroz Racing", "gears": "GEARS Canada", "6d": "6D Helmets", "pitviper": "Pit Viper", "kinco": "Kinco", "baffin": "Baffin", "motorfist": "Motorfist", "jethwear": "Jethwear", "fieldsheer": "Fieldsheer", "mysteryranch": "Mystery Ranch", "ortovox": "Ortovox", "blackdiamond": "Black Diamond", "arva": "Arva", "snowest": "SnoWest Magazine", "sleddermag": "Mountain Sledder", "roxspeedfx": "ROX Speed FX", "zollinger": "Zollinger Racing Products", "oakley": "Oakley"};
 function personalize() {
   const t = decodeURIComponent((location.hash || "").slice(1)).toLowerCase();
@@ -304,10 +256,10 @@ function personalize() {
   const name = t ? (BRANDS[t] || t.replace(/[-_.]+/g, " ").replace(/\b\w/g, c => c.toUpperCase())) : "";
   box.hidden = !name;
   document.getElementById("brand").textContent = name;
-  document.title = "Gabe Ewsuk Sled Media Kit" + (name ? " · " + name : "");
-  const href = "mailto:gabeewsuk@gmail.com?subject=" + encodeURIComponent((name ? name + " x " : "") + "Gabe Ewsuk / @406sleds, 2026-27");
+  document.title = "Gabe Ewsuk, @406sleds" + (name ? " for " + name : "");
+  const href = "mailto:gabeewsuk@gmail.com?subject=" + encodeURIComponent((name ? name + " / " : "") + "Gabe Ewsuk, @406sleds");
   document.getElementById("mail").href = document.getElementById("mail2").href = href;
-  document.getElementById("mail3").href = "mailto:gabeewsuk@gmail.com?subject=" + encodeURIComponent("Video ideas for " + (name || "my brand") + " / @406sleds");
+  document.getElementById("mail3").href = "mailto:gabeewsuk@gmail.com?subject=" + encodeURIComponent("Video ideas" + (name ? " for " + name : ""));
 }
 personalize();
 addEventListener("hashchange", personalize);
@@ -319,7 +271,7 @@ document.getElementById("copy").addEventListener("click", async (e) => {
     const r = document.createRange(); r.selectNodeContents(document.getElementById("email"));
     const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected";
   }
-  setTimeout(() => (btn.textContent = "Copy email"), 2000);
+  setTimeout(() => (btn.textContent = "Copy"), 2000);
 });
 </script>
 </body>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gabe Ewsuk Sled Media Kit</title>
-<meta name="description" content="Big air. Bad ideas. Snowmobile jumps and sled comedy from Bozeman, MT. 3.6M views in 90 days on @406sleds.">
+<meta name="description" content="Sled content built around comedy, from Bozeman, MT. 3.6M views in 90 days on @406sleds.">
 <meta property="og:title" content="Gabe Ewsuk · @406sleds">
-<meta property="og:description" content="Big air. Bad ideas. 3.6M views in 90 days. Looking for a product deal or ambassador spot for 2026–27.">
+<meta property="og:description" content="Sled content built around comedy. 3.6M views in 90 days, 98% from non-followers. Looking for a product deal or ambassador spot for 2026–27.">
 <meta property="og:image" content="https://gabeewsuk.github.io/sled/img/poster.jpg">
 <meta property="og:url" content="https://gabeewsuk.github.io/sled/">
 <meta property="og:type" content="website">
@@ -54,9 +54,8 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); }
 .handle { font: 600 18px var(--body); color: var(--muted); margin-top: -8px; }
 .handle a { color: var(--ink); text-decoration: none; }
 .handle a:hover { text-decoration: underline; }
-.tag { font: 900 clamp(26px, 3.4vw, 36px)/1.05 var(--display); text-transform: uppercase; color: var(--red); }
+.pos { font-size: 19px; line-height: 1.5; max-width: 54ch; }
 .ask { font-size: 21px; font-weight: 600; line-height: 1.35; max-width: 40ch; }
-.sub { font-size: 17px; max-width: 56ch; color: var(--muted); }
 .ctas { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .btn { display: inline-flex; align-items: center; gap: 8px; font: 600 16px var(--body); text-decoration: none; padding: 12px 18px; border-radius: 4px; border: 2px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; }
 .btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
@@ -127,13 +126,12 @@ section { display: grid; gap: 18px; }
   .layout { display: flex; flex-direction: column; gap: 12px; padding: 14px 16px 48px; }
   .hero { display: contents; }
   .hero > *, .side, .rest { order: 20; }
-  .for { order: 1; align-self: flex-start; } .ctas { align-self: stretch; } .hero h1 { order: 2; } .handle { order: 3; } .tag { order: 4; }
+  .for { order: 1; align-self: flex-start; } .ctas { align-self: stretch; } .hero h1 { order: 2; } .handle { order: 3; }
   .side { order: 5; position: static; margin-top: 4px; align-self: stretch; }
-  .stats { order: 6; } .note { order: 7; } .ask { order: 8; margin-top: 14px; } .sub { order: 9; } .ctas { order: 10; }
+  .stats { order: 6; } .note { order: 7; } .pos { order: 8; margin-top: 14px; font-size: 17px; } .ask { order: 9; } .ctas { order: 10; }
   .rest { order: 11; margin-top: 40px; }
   .hero h1 { font-size: 46px; }
   .handle { margin-top: 0; font-size: 16px; }
-  .tag { font-size: 24px; }
   .reel { width: min(100%, calc(68vh * 9 / 16), calc(68svh * 9 / 16)); margin-inline: auto; }
   .side .player { height: auto; width: 100%; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -149,9 +147,8 @@ section { display: grid; gap: 18px; }
     <span class="for" id="for" hidden>Prepared for <span id="brand"></span></span>
     <h1>Gabe Ewsuk</h1>
     <p class="handle"><a href="https://www.instagram.com/406sleds" target="_blank" rel="noopener">@406sleds</a> · Bozeman, Montana</p>
-    <p class="tag">Big air. Bad ideas.</p>
-    <p class="ask">Looking for a product deal or ambassador spot for the 2026–27 season.</p>
-    <p class="sub">Big-air sled jumps and sled comedy: the stuff people actually send to their buddies. Send me your product and it's in every clip all winter.</p>
+    <p class="pos">I build my sled content around comedy because funny clips get sent around. That's how @406sleds reached 1.88 million accounts in 90 days with under 2,000 followers, and the people it reaches are the ones who buy sled gear: 92% men, mostly 18–44, in the US and Canada.</p>
+    <p class="ask">I'm looking for a product deal or ambassador spot for the 2026–27 season.</p>
     <div class="ctas">
       <a class="btn primary" id="mail" href="mailto:gabeewsuk@gmail.com?subject=Sponsorship%202026-27">Email me →</a>
       <a class="btn" href="https://www.instagram.com/406sleds" target="_blank" rel="noopener">DM @406sleds</a>
@@ -162,7 +159,7 @@ section { display: grid; gap: 18px; }
       <div class="stat"><b>168K</b><span>likes, shares, saves &amp; comments</span></div>
       <div class="stat"><b>1,861</b><span>followers</span></div>
     </div>
-    <p class="note">Yes, 1.9K followers and 3.6M views: 98% of views came from non-followers. My reach comes from Reels that get shared, not from a follower base.</p>
+    <p class="note">98% of views came from people who don't follow the page.</p>
   </header>
 
   <aside class="side" aria-label="Highlight reel">
@@ -188,7 +185,7 @@ section { display: grid; gap: 18px; }
       <h2 id="r-h">What gets shared</h2>
       <div class="reels">
         <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DVg4VVxj01T/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DVg4VVxj01T/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>Sled on the Subaru</span><b>50.8K likes</b></figcaption></figure>
-        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUbP9hmka22/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DUbP9hmka22/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>“At least he said sorry”</span><b>Bad idea</b></figcaption></figure>
+        <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUbP9hmka22/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DUbP9hmka22/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>“At least he said sorry”</span><b>Comedy</b></figcaption></figure>
         <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYSaX8msgqc/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DYSaX8msgqc/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>Sled Fest 2026</span><b>Big air</b></figcaption></figure>
         <figure><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYc91-TNePY/" data-instgrm-version="14"><a class="ig-fallback" href="https://www.instagram.com/reel/DYc91-TNePY/" target="_blank" rel="noopener">Watch on Instagram ↗</a></blockquote><figcaption><span>Sled Fest · Ice Age jump</span><b>Big air</b></figcaption></figure>
       </div>
@@ -198,7 +195,7 @@ section { display: grid; gap: 18px; }
       <h2 id="g-h">What you get</h2>
       <ul class="get">
         <li>2 tagged reels a month, December to April<span>On @406sleds, with your product in the shot.</span></li>
-        <li>Your product in the jumps and the comedy bits<span>On the sled and on me, in the clips that travel furthest.</span></li>
+        <li>Your product in the riding and the comedy<span>On the sled and on me, in the clips that get shared the most.</span></li>
         <li>Raw footage you can use<span>Repost it or run it in your own ads.</span></li>
         <li>Sled Fest big-air jumps<span>2025 and 2026, and again this season in your gear.</span></li>
       </ul>

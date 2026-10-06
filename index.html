@@ -122,12 +122,22 @@ section { display: grid; gap: 18px; }
 .contact .btn.primary { border-color: var(--red); }
 
 /* phone: name and ask first, then the reel, then the rest */
+/* phone: short name header, video right away, stats under it, then the ask */
 @media (max-width: 860px) {
-  .layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "hero" "reel" "rest"; row-gap: 36px; padding: 16px 16px 48px; }
-  .side { position: static; }
+  .layout { display: flex; flex-direction: column; gap: 12px; padding: 14px 16px 48px; }
+  .hero { display: contents; }
+  .hero > *, .side, .rest { order: 20; }
+  .for { order: 1; align-self: flex-start; } .ctas { align-self: stretch; } .hero h1 { order: 2; } .handle { order: 3; } .tag { order: 4; }
+  .side { order: 5; position: static; margin-top: 4px; align-self: stretch; }
+  .stats { order: 6; } .note { order: 7; } .ask { order: 8; margin-top: 14px; } .sub { order: 9; } .ctas { order: 10; }
+  .rest { order: 11; margin-top: 40px; }
+  .hero h1 { font-size: 46px; }
+  .handle { margin-top: 0; font-size: 16px; }
+  .tag { font-size: 24px; }
+  .reel { width: min(100%, calc(68vh * 9 / 16), calc(68svh * 9 / 16)); margin-inline: auto; }
   .side .player { height: auto; width: 100%; }
-  .reel { width: min(100%, 400px); margin-inline: auto; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat b { font-size: 34px; }
   .contact { padding: 24px 18px; }
 }
 @media (max-width: 480px) { .proof { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -219,7 +229,7 @@ section { display: grid; gap: 18px; }
   const wrap = document.getElementById("player"), v = document.getElementById("va");
   const pp = document.getElementById("pp"), seek = document.getElementById("seek"), tm = document.getElementById("tm");
   const mute = document.getElementById("mute"), fs = document.getElementById("fs"), big = document.getElementById("bigplay"), unmute = document.getElementById("unmute");
-  let dragging = false;
+  let dragging = false, soundAt = 0;
   const fmt = t => Math.floor(t / 60) + ":" + String(Math.floor(t % 60)).padStart(2, "0");
   function ui() {
     const d = v.duration || 62, t = v.currentTime || 0;
@@ -235,15 +245,36 @@ section { display: grid; gap: 18px; }
   function setMuted(m) { v.muted = m; mute.textContent = m ? "🔇" : "🔊"; mute.setAttribute("aria-label", m ? "Unmute" : "Mute"); unmute.hidden = !m; }
   big.addEventListener("click", play);
   pp.addEventListener("click", toggle);
-  v.addEventListener("click", toggle);
+  v.addEventListener("click", () => { if (Date.now() - soundAt > 800) toggle(); });
   seek.addEventListener("input", () => { dragging = true; tm.textContent = fmt(seek.value / 1000 * (v.duration || 0)) + " / " + fmt(v.duration || 0); });
   seek.addEventListener("change", () => { dragging = false; v.currentTime = seek.value / 1000 * (v.duration || 0); });
   mute.addEventListener("click", () => setMuted(!v.muted));
   unmute.addEventListener("click", e => { e.stopPropagation(); setMuted(false); if (v.paused) play(); });
   fs.addEventListener("click", () => { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); else (wrap.requestFullscreen ? wrap.requestFullscreen() : Promise.reject()).catch(() => { v.webkitEnterFullscreen && v.webkitEnterFullscreen(); }); });
-  setMuted(true);
-  ui();
-  play();
+  // Sound on at 30%. Browsers block autoplay with sound on a first visit, so if that's refused it starts muted
+  // and turns the sound on at the viewer's first tap or click. Web Audio gain sets the level (iPhones ignore video.volume).
+  const LEVEL = 0.3;
+  let ctx = null, userMuted = false;
+  function routeAudio() {
+    if (ctx) return ctx.resume().catch(() => {});
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    try { ctx = new AC(); const g = ctx.createGain(); g.gain.value = LEVEL; ctx.createMediaElementSource(v).connect(g).connect(ctx.destination); v.volume = 1; ctx.resume().catch(() => {}); }
+    catch (e) { ctx = null; v.volume = LEVEL; }
+  }
+  mute.addEventListener("click", () => { userMuted = v.muted; routeAudio(); });
+  unmute.addEventListener("click", () => { routeAudio(); userMuted = false; });
+  const GESTURES = ["click", "touchend", "keydown"];
+  function firstGesture(e) {
+    if (navigator.userActivation && !navigator.userActivation.isActive) return; // a scroll, not a tap: keep waiting
+    GESTURES.forEach(n => removeEventListener(n, firstGesture, true));
+    routeAudio();
+    if (e.target.closest && e.target.closest("#mute, #unmute")) return; // those buttons set the sound themselves
+    if (!userMuted && v.muted) { soundAt = Date.now(); setMuted(false); v.play().catch(() => { setMuted(true); play(); }); }
+  }
+  GESTURES.forEach(n => addEventListener(n, firstGesture, true));
+  v.volume = LEVEL; setMuted(false); ui();
+  v.play().catch(() => { setMuted(true); play(); });
 })();
 
 // Personalize from the link's #brand token, e.g. …#klim → "Prepared for KLIM" and an email subject naming the brand

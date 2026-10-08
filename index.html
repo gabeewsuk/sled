@@ -68,7 +68,8 @@ h2 { font-size: clamp(24px, 3vw, 30px); line-height: 1.15; letter-spacing: -.01e
 .pbar button { background: none; border: 0; color: #fff; font-size: 15px; cursor: pointer; padding: 4px; min-width: 26px; }
 .pbar input[type=range] { flex: 1; min-width: 0; accent-color: var(--red); }
 .pbar span { white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 11px; }
-.pbar button:focus-visible, .bigplay:focus-visible, .unmute:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.miniclose { display: none; position: absolute; top: 6px; right: 6px; width: 26px; height: 26px; place-items: center; border: 0; border-radius: 50%; background: rgba(0,0,0,.6); color: #fff; font-size: 16px; line-height: 1; cursor: pointer; }
+.pbar button:focus-visible, .miniclose:focus-visible, .bigplay:focus-visible, .unmute:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .pbar { transition: none; } }
 
 section { display: grid; gap: 16px; }
@@ -95,11 +96,15 @@ ul.plain { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
   .hero { display: contents; }
   .hero > *, .side, .rest { order: 20; }
   .hey { order: 1; } .who { order: 2; gap: 14px; } .who img { width: 64px; height: 64px; }
-  .side { order: 5; position: static; align-self: stretch; margin-top: 4px; }
+  .side { order: 5; position: static; align-self: center; width: min(100%, calc(68vh * 9 / 16), calc(68svh * 9 / 16)); aspect-ratio: 9 / 16; margin-top: 4px; }
   .stats { order: 6; gap: 12px 28px; } .intro { order: 8; margin-top: 12px; } .ask { order: 9; } .ctas { order: 10; }
   .rest { order: 11; margin-top: 40px; }
   .hero h1 { font-size: 40px; }
-  .side .player { height: auto; width: min(100%, calc(68vh * 9 / 16), calc(68svh * 9 / 16)); margin-inline: auto; }
+  .side .player { width: 100%; height: 100%; }
+  .player.mini { position: fixed; top: 10px; right: 10px; width: min(38vw, 170px); height: auto; aspect-ratio: 9 / 16; z-index: 50; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.35); cursor: pointer; }
+  .player.mini .pbar, .player.mini .bigplay { display: none; }
+  .player.mini .unmute { top: 6px; left: 6px; font-size: 11px; padding: 5px 8px; }
+  .player.mini .miniclose { display: grid; }
   .stat b { font-size: 28px; }
 }
 </style>
@@ -125,7 +130,7 @@ ul.plain { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
       <div class="stat"><b>3.6M</b><span>views, last 90 days</span></div>
       <div class="stat"><b>1.88M</b><span>accounts reached</span></div>
       <div class="stat"><b>168K</b><span>likes, comments, shares</span></div>
-      <div class="stat"><b>1,861</b><span>followers</span></div>
+      <div class="stat"><b>1,864</b><span>followers</span></div>
     </div>
   </header>
 
@@ -133,6 +138,7 @@ ul.plain { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
     <div class="player" id="player">
       <video id="va" src="reel.mp4" playsinline muted autoplay loop preload="auto" poster="img/poster.jpg"></video>
       <button type="button" class="unmute" id="unmute">Tap for sound</button>
+      <button type="button" class="miniclose" id="miniclose" aria-label="Close mini player">×</button>
       <button type="button" class="bigplay" id="bigplay" aria-label="Play reel"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
       <div class="pbar">
         <button type="button" id="pp" aria-label="Play">▶</button>
@@ -245,6 +251,31 @@ ul.plain { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
     if (!userMuted && v.muted) { soundAt = Date.now(); setMuted(false); v.play().catch(() => { setMuted(true); play(); }); }
   }
   GESTURES.forEach(n => addEventListener(n, firstGesture, true));
+  // Phone: once the reel scrolls off screen it floats as a mini player in the corner,
+  // until the Instagram reels come into view (then it hides and pauses). Scrolling back brings it back.
+  const phone = matchMedia("(max-width: 860px)"), slot = document.querySelector(".side");
+  const firstEmbed = document.querySelector(".reels figure"), closeBtn = document.getElementById("miniclose");
+  let mini = false, closed = false, autoPaused = false;
+  function setMini(on) { if (on !== mini) { mini = on; wrap.classList.toggle("mini", on); } }
+  function onScroll() {
+    if (!phone.matches) { setMini(false); return; }
+    const past = slot.getBoundingClientRect().bottom < 80;
+    const beforeReels = firstEmbed.getBoundingClientRect().top > innerHeight * 0.5;
+    if (!past) closed = false;
+    setMini(past && beforeReels && !closed);
+    if (past && !beforeReels && !v.paused) { autoPaused = true; v.pause(); }
+    else if (autoPaused && !closed && (!past || beforeReels)) { autoPaused = false; play(); }
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  closeBtn.addEventListener("click", e => { e.stopPropagation(); closed = true; autoPaused = false; setMini(false); v.pause(); });
+  // tapping the mini player jumps back up to the full-size reel instead of pausing it
+  wrap.addEventListener("click", e => {
+    if (!mini || e.target.closest("#unmute, #miniclose")) return;
+    e.stopPropagation();
+    slot.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  }, true);
+
   v.volume = LEVEL; setMuted(false); ui();
   v.play().catch(() => { setMuted(true); play(); });
 })();
